@@ -105,26 +105,13 @@ def davinci_further_summarize(text_list, api_key):
     # create empty summary string
     summary = ''
 
-    # good prompt: briefly summarize the following text
-
     # loop through each item of the list
     for i in range(len(text_list)):
 
         prompt = f"Please summarize the main sentiment of the " \
                  f"following text in a single sentence: {text_list[i]} "
 
-        # print(text_list[i])
-        # print('/////')
-        # if i == 0:
-        #     # prompt = f"Identify the main points or arguments presented in the following document. For each main " \
-        #     #          f"point, create a concise bullet point that captures the essence of the point. Ensure that the " \
-        #     #          f"bullet points accurately reflect the content and meaning of the original document. Organize " \
-        #     #          f"the bullet points in a logical order that follows the structure of the original document. Here " \
-        #     #          f"is the document: {text_list[i]} "
-        #     prompt = f"Summarize the main sentiment of the following text in a single sentence: {text_list[i]}"
-        #
-        # else:
-        #     prompt = f"Summarize the main sentiment of the following text in a single sentence: {text_list[i]}"
+
         response = openai.Completion.create(
             model="text-davinci-003",
             max_tokens=1000,
