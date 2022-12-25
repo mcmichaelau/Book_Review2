@@ -157,7 +157,9 @@ def review(summary, title, author, api_key):
     response = openai.Completion.create(
         model="text-davinci-003",
         max_tokens=1000,
-        prompt=f'Please write an up-beat, honest, and cheerful book review of a book called {title} written by {author}based on the followinf summary of the book: {summary}',
+        prompt=f'Please write a critical-thinking, professional and scholarly book review of a book called {title} written by {author} based on the following summary of the book. '
+               f'Use this format: Paragraph 1: Summary. paragraph 2: Positive Aspects. Paragraph 3: Negative Aspects. Paragraph 4: Rating out of 5. Paragraph 5: Recommended Audience.'
+               f'Here is the book summary:{summary}',
         temperature=0.5,
         frequency_penalty=1.5,
         presence_penalty=1,
