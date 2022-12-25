@@ -1,9 +1,7 @@
 from pdfminer.high_level import extract_text
 import re
 
-# open the file
-file = open('Asterisk.pdf', 'rb')
-
+#hi
 def pdf_to_text(file, split_length):
     text = extract_text(file)
 
@@ -18,8 +16,6 @@ def pdf_to_text(file, split_length):
     # append the text to the list
     text_list = text.split("\n")
 
-
-
     # merge each the elements of the text list into strings that are less than 4000 characters and append them to a new
     # list with newlines between each element
 
@@ -33,9 +29,5 @@ def pdf_to_text(file, split_length):
             split_text_list.append(f'\n{text_list[i]}')
 
     return split_text_list
-
-test = pdf_to_text(file, 1900)
-
-print(test)
 
 
