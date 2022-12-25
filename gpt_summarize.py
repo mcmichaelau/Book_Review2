@@ -150,3 +150,20 @@ def davinci_further_summarize(text_list, api_key):
     return summary
 
 
+def review(summary, title, author, api_key):
+
+    openai.api_key = api_key
+
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        max_tokens=1000,
+        prompt=f'Please write an up-beat, honest, and cheerful book review of a book called {title} written by {author}based on the followinf summary of the book: {summary}',
+        temperature=0.5,
+        frequency_penalty=1.5,
+        presence_penalty=1,
+        n=1
+    )
+
+    return response['choices'][0]['text']
+
+

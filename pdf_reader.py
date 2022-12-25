@@ -1,7 +1,7 @@
 from pdfminer.high_level import extract_text
 import re
 
-#hi
+
 def pdf_to_text(file, split_length):
     text = extract_text(file)
 
