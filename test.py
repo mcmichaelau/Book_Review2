@@ -4,7 +4,7 @@ from gpt_summarize import ada_summarize, summarize_bullet_points, davinci_furthe
 key = "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"
 
 # open the file
-file = open('The Gifts of Imperfection_ Embrace Who You Are ( PDFDrive ).pdf', 'rb')
+file = open('Asterisk.pdf', 'rb')
 
 text = pdf_to_text(file, 1900)
 
