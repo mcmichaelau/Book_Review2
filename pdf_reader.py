@@ -49,7 +49,7 @@ def pdf_to_text(file, split_length):
         else:
             split_text_list.append(f' {text_list[i]}')
 
-# text
+# tex
 
     for i in range(len(split_text_list)):
         # print(repr(split_text_list[i]))
