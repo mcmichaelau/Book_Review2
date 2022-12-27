@@ -61,9 +61,6 @@ def pdf_to_text(file, split_length):
             split_text_list[i] = split_text_list[i].replace(string, " ")
         # print(split_text_list[-1])
 
-    # print((split_text_list[0]))
-    # print('-------------------')
-
 
     # print((split_text_list[1]))
     # print((split_text_list[2]))
