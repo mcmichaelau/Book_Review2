@@ -27,7 +27,8 @@ def pdf_to_text(file, split_length):
     text = re.sub(r"(?<=[a-z])\n(?=[A-Z])", ". ", text)
 
     # create a list of characters to replace
-    chars = [r"\x0c", r"\t", r"\n\n(?=[a-z])", r"\n(?=[a-z])", r"(?<=[A-Z])\n(?=[A-Z])", r"(?<=[A-Z])\n\n(?=[A-Z])", r"(-)\n\n",
+    chars = [r"\x0c", r"\t", r"\n\n(?=[a-z])", r"\n(?=[a-z])", r"(?<=[A-Z])\n(?=[A-Z])", r"(?<=[A-Z])\n\n(?=[A-Z])",
+             r"(-)\n\n",
              r"(-)\n", r"  "]
 
     # loop through each character and replace it with a space
@@ -35,10 +36,10 @@ def pdf_to_text(file, split_length):
         text = re.sub(char, " ", text)
 
     # split the text into a list of strings
-    text_list = text.split(" \n")
-
-
-
+    text_list = text.split("\n")
+    #
+    # print(f'length text list: {len(text_list)}')
+    # print(f'text list: {text_list}')
     # merge each the elements of the text list into strings that are less than 4000 characters and append them to a new
     # list with newlines between each element
     split_text_list = []
@@ -50,6 +51,8 @@ def pdf_to_text(file, split_length):
         else:
             split_text_list.append(f'{text_list[i]}')
 
+        # print(split_text_list)
+
 
 
     for i in range(len(split_text_list)):
@@ -59,11 +62,5 @@ def pdf_to_text(file, split_length):
         strings = ["\n", "\n ", " \n", "      ", "       ", "      ", "     ", "    ", "   ", "  "]
         for string in strings:
             split_text_list[i] = split_text_list[i].replace(string, " ")
-        # print(split_text_list[-1])
 
-
-    # print((split_text_list[1]))
-    # print((split_text_list[2]))
     return split_text_list
-
-
