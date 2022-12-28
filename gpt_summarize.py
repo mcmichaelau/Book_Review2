@@ -1,6 +1,7 @@
 import os
 import openai
-
+import time
+import sys
 
 key = "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"
 
@@ -14,7 +15,6 @@ def ada_summarize(text_list, api_key):
 
     # loop through each item of the list
     for i in range(len(text_list)):
-
         response = openai.Completion.create(
             model="text-davinci-003",
             n=1,
@@ -107,24 +107,40 @@ def davinci_further_summarize(text_list, api_key):
 
     # loop through each item of the list
     for i in range(len(text_list)):
+        print(f'text_list {i}')
 
         prompt = f"Please summarize the main sentiment of the " \
                  f"following text in a single sentence: {text_list[i]} "
 
+        try:
 
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            max_tokens=1000,
-            prompt=prompt,
-            temperature=0.5,
-            frequency_penalty=1.5,
-            presence_penalty=-1.5,
-            n=1
-        )
+            response = openai.Completion.create(
+                model="text-davinci-003",
+                max_tokens=1000,
+                prompt=prompt,
+                temperature=0.5,
+                frequency_penalty=1.5,
+                presence_penalty=-1.5,
+                n=1
+            )
+
+        except:
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            error_name = exc_type.__name__
+            print(f"An error occurred: {error_name}")
+            time.sleep(30)
+            response = openai.Completion.create(
+                model="text-davinci-003",
+                max_tokens=1000,
+                prompt=prompt,
+                temperature=0.5,
+                frequency_penalty=1.5,
+                presence_penalty=-1.5,
+                n=1
+            )
 
         # append the summary to the summary string
         summary = summary + response['choices'][0]['text']
-
 
     # split the summary into a list of bullet points
     summary = summary.split('\n')
@@ -138,7 +154,6 @@ def davinci_further_summarize(text_list, api_key):
 
 
 def review(summary, title, author, api_key):
-
     openai.api_key = api_key
 
     response = openai.Completion.create(
@@ -154,5 +169,3 @@ def review(summary, title, author, api_key):
     )
 
     return response['choices'][0]['text']
-
-
