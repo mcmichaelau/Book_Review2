@@ -2,8 +2,6 @@ from pdf_reader import pdf_to_text
 from gingerit.gingerit import GingerIt
 import pdfquery
 
-file = open('Asterisk.pdf', 'rb')
-
 
 def collect_errors(file):
     # define parser
