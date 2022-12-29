@@ -58,7 +58,7 @@ def collect_errors(file):
     return error_list
 
 
-def sort_errors(error_list):
+def sort_errors(error_list, filename):
     for error in error_list:
         print(error['text'])
         print(error['result'])
@@ -67,12 +67,8 @@ def sort_errors(error_list):
         keep = input()
         if keep == 'y':
             # append error to text file
-            with open('errors.txt', 'a') as f:
+            with open(f'{filename}_errors.txt', 'a') as f:
                 f.write(f"{error}\n")
         elif keep == 'n':
             pass
 
-
-errors = collect_errors(file)
-
-sort_errors(errors)
