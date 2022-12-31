@@ -4,7 +4,6 @@ import time
 import sys
 
 
-
 def ada_summarize(text_list, api_key):
     # define api key
     openai.api_key = api_key
