@@ -1,10 +1,10 @@
 from pdf_reader import pdf_to_text
 from gpt_summarize import ada_summarize, summarize_bullet_points, davinci_further_summarize, combine_list_items
 
-key = "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"
+key = "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"
 
 # open the file
-file = open('Asterisk copy.pdf', 'rb')
+file = open('Killing-Abel copy.pdf', 'rb')
 
 text = pdf_to_text(file, 1900)
 

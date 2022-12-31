@@ -3,7 +3,6 @@ import openai
 import time
 import sys
 
-key = "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"
 
 
 def ada_summarize(text_list, api_key):
@@ -109,8 +108,8 @@ def davinci_further_summarize(text_list, api_key):
     for i in range(len(text_list)):
         print(f'text_list {i}')
 
-        prompt = f"Please summarize the main sentiment of the " \
-                 f"following text in a single sentence: {text_list[i]} "
+        prompt = f"Please summarize the main sentiment and content of the " \
+                 f"following excerpt from a book in a single sentence: {text_list[i]} "
 
         try:
 
@@ -141,6 +140,8 @@ def davinci_further_summarize(text_list, api_key):
 
         # append the summary to the summary string
         summary = summary + response['choices'][0]['text']
+
+        time.sleep(30)
 
     # split the summary into a list of bullet points
     summary = summary.split('\n')
