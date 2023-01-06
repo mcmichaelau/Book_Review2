@@ -108,7 +108,7 @@ def davinci_further_summarize(text_list, api_key):
         print(f'text_list {i}')
 
         prompt = f"Please summarize the main sentiment and content of the " \
-                 f"following excerpt from a book in a single sentence: {text_list[i]} "
+                 f"following excerpt in a single sentence. Rate the grammar out of 5: {text_list[i]} "
 
         try:
 
