@@ -3,11 +3,12 @@ from gingerit.gingerit import GingerIt
 import pdfquery
 from better_profanity import profanity
 import time
+import language_tool_python
 
 
 def collect_errors(file):
-    # define parser
-    parser = GingerIt()
+
+    tool = language_tool_python.LanguageToolPublicAPI('en-US')
 
     # define the pdf
     pdf = pdfquery.PDFQuery(file)
@@ -44,28 +45,21 @@ def collect_errors(file):
                 mature_list.append(f'Page{i}:{sentence}')
 
             try:
-                errors = parser.parse(sentence)
+                matches = tool.check(sentence)
+
             except:
                 time.sleep(600)
-                errors = parser.parse(sentence)
+                matches = tool.check(sentence)
 
-            if errors is None:
+            if matches is None:
                 pass
 
             else:
-                try:
-                    if errors['corrections'][0]['definition'] is None:
-                        pass
-                    else:
+                for match in matches:
+                    error_list.append(f"Page {i}: {match.context} --> {match.replacements}")
+                # error_list.append(matches)
 
-                        # add page number to error
-                        errors['page'] = i
-
-                        # append errors to error list
-                        error_list.append(errors)
-
-                except:
-                    pass
+    tool.close()
 
     return error_list, mature_list
 
@@ -86,8 +80,7 @@ def sort_mature(mature_list, filename):
 
 def sort_errors(error_list, filename):
     for error in error_list:
-        print(error['text'])
-        print(error['result'])
+        print(error)
         print('Keep? (y/n)')
         # create text input
         keep = input()
